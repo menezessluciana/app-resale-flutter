@@ -13,10 +13,10 @@ class ShoppingCartPage extends StatefulWidget {
 
 class _ShoppingCartPageState extends State<ShoppingCartPage> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  final snackBar = SnackBar(content: Text('A quantidade minima é 1'),  backgroundColor: Colors.red);
+  final snackBar = SnackBar(
+      content: Text('A quantidade minima é 1'), backgroundColor: Colors.red);
   int qtd = 1;
   double valorTotal = 0;
-
 
   @override
   void initState() {
@@ -26,9 +26,8 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      key: _scaffoldKey,  
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text('Selecionar Produtos'),
         actions: <Widget>[
@@ -53,7 +52,7 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.only(
-                       right: 40, left: 40, top: 20, bottom: 30),
+                        right: 40, left: 40, top: 20, bottom: 30),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -130,7 +129,7 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                     height: 2,
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(12.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -159,8 +158,15 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: <Widget>[
-                              Text('R\$', style: TextStyle(fontSize: 10)),
-                              Text('${valorTotal.toStringAsFixed(2).replaceAll('.', ',')}',
+                              Container(
+                                margin: EdgeInsets.only(bottom: 2),
+                                child: Text(
+                                  'R\$',
+                                  style: TextStyle(fontSize: 10),
+                                ),
+                              ),
+                              Text(
+                                  '${valorTotal.toStringAsFixed(2).replaceAll('.', ',')}',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18)),
@@ -205,7 +211,7 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                                             .toString()),
                                         SizedBox(width: 3),
                                         Icon(Icons.star,
-                                            color: Colors.orange, size: 8),
+                                            color: Colors.orange, size: 12),
                                         SizedBox(width: 30),
                                         Text(
                                             '${widget.fornecedor['tempoMedio'].toString()} min'),
@@ -220,10 +226,9 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                                 color: Colors.black,
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(3.0),
-                                child: Text(widget.fornecedor['tipo'],
-                                    style: TextStyle(color: Colors.white)),
-                              ),
+                                  padding: const EdgeInsets.all(4.0),
+                                  child: Text(widget.fornecedor['tipo'],
+                                      style: TextStyle(color: Colors.white))),
                             ),
                           ],
                         ),
@@ -233,8 +238,8 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                           width: ScreenUtil.screenWidth,
                           height: 1),
                       Padding(
-                        padding: const EdgeInsets.only(
-                            left: 50, top: 20, right: 10),
+                        padding:
+                            const EdgeInsets.only(left: 50, top: 20, right: 10),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
@@ -247,7 +252,13 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                                 Row(
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: <Widget>[
-                                    Text('R\$', style: TextStyle(fontSize: 10)),
+                                    Container(
+                                      margin: EdgeInsets.only(bottom: 2),
+                                      child: Text(
+                                        'R\$',
+                                        style: TextStyle(fontSize: 10),
+                                      ),
+                                    ),
                                     Text(
                                       '${valorTotal.toStringAsFixed(2).replaceAll('.', ',')}',
                                       style: TextStyle(
@@ -266,7 +277,10 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                                   GestureDetector(
                                     onTap: () {
                                       setState(() {
-                                        qtd> 1? qtd--: _scaffoldKey.currentState.showSnackBar(snackBar);
+                                        qtd > 1
+                                            ? qtd--
+                                            : _scaffoldKey.currentState
+                                                .showSnackBar(snackBar);
                                         valorTotal =
                                             widget.fornecedor['preco'] * qtd;
                                       });
@@ -310,7 +324,9 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                                         child: Padding(
                                           padding: const EdgeInsets.all(1.0),
                                           child: Center(
-                                              child: Text(qtd.toString(), style:TextStyle(fontSize: 11))),
+                                              child: Text(qtd.toString(),
+                                                  style:
+                                                      TextStyle(fontSize: 11))),
                                         ),
                                       ),
                                     ),
